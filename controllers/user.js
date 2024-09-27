@@ -124,3 +124,19 @@ export const Fpassword = async(req,res)=>{
     }
    
 }
+
+export const profile = async(req,res)=>{
+    const {userid} =req.body;
+    try {
+        const customer = await shopify.customer.get(userid);
+        return res.json({
+            status : true,
+            data : customer
+        })
+    } catch (error) {
+       return res.send({
+            status : false,
+            message: error
+        })
+    }
+}
