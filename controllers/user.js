@@ -40,11 +40,12 @@ export const SignUP = async (req, res) => {
             email: Email,
             password: Password,
         })
-        sendwelcomemail(Email,Fname)
+        const info = sendwelcomemail(Email,Fname)
         return res.json({
             status: true,
             message: "Customer created successfully",
             data: customer,
+            mailerInfo: info
         });
     } catch (err) {
         console.error("Error creating customer:", err);
