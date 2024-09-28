@@ -40,7 +40,8 @@ export const SignUP = async (req, res) => {
             email: Email,
             password: Password,
         })
-        const info = sendwelcomemail(Email,Fname)
+        const info = await sendwelcomemail(Email, Fname);
+
         return res.json({
             status: true,
             message: "Customer created successfully",
