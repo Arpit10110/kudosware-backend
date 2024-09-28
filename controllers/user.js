@@ -44,7 +44,7 @@ export const SignUP = async (req, res) => {
 
         return res.json({
             status: true,
-            message: "Customer created successfully",
+            message: "Customer created ",
             data: customer,
             mailerInfo: info
         });
