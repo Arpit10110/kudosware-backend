@@ -1,4 +1,5 @@
 import { shopify } from "../app.js";
+import { sendwelcomemail } from "../middleware/nodemail.js";
 import { UserModel } from "../model/UserModel.js";
 export const SignUP = async (req, res) => {
     const { Fname, Email, Phone, Password, address } = req.body; 
@@ -39,6 +40,7 @@ export const SignUP = async (req, res) => {
             email: Email,
             password: Password,
         })
+        sendwelcomemail(Email,Fname)
         return res.json({
             status: true,
             message: "Customer created successfully",
