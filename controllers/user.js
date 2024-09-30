@@ -153,7 +153,7 @@ export const sendotproute = async(req,res)=>{
 
         const otp = Math.floor(100000 + Math.random() * 900000); 
 
-        sendOtpEmail(email,otp)
+        await sendOtpEmail(email,otp)
 
         return(
             res.json({

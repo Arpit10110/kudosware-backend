@@ -16,7 +16,7 @@ export const sendOtpEmail = async (email, otp) => {
   });
 
   const mailData = {
-    from: 'tinycloindia@gmail.com', // Sender address
+    from: 'tinycloindia@gmail.com', // Sender address 
     to: email, // Recipient email
     subject: "Your OTP Code", // Subject line
     text: `Your OTP for verifying your account is: ${otp}

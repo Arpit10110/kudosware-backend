@@ -7,7 +7,7 @@ export const sendwelcomemail = async (email, name) => {
     secure: true,
     auth: {
       user: "tinycloindia@gmail.com",
-      pass: "ovczysymommvnfal",
+      pass: "ovczysymommvnfal", 
     },
     tls: {
       rejectUnauthorized: false,
