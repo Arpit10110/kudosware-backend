@@ -1,5 +1,6 @@
 import { shopify } from "../app.js";
 import { sendwelcomemail } from "../middleware/nodemail.js";
+import { sendOtpEmail } from "../middleware/sendotp.js";
 import { UserModel } from "../model/UserModel.js";
 export const SignUP = async (req, res) => {
     const { Fname, Email, Phone, Password, address } = req.body; 
@@ -98,13 +99,6 @@ export const login =async(req,res)=>{
 export const Fpassword = async(req,res)=>{
     const {Email,Password} = req.body;
     try {
-        const customers = await shopify.customer.search({ query: `email:${Email}` });
-        if (customers.length === 0) {
-            return res.json({
-                status: false,
-                message: "User not found !",
-            });
-        }
         // change the password of the customer with the new password
         const updateResult = await UserModel.findOneAndUpdate(
             { email: Email },
@@ -142,5 +136,41 @@ export const profile = async(req,res)=>{
             status : false,
             message: error
         })
+    }
+}
+
+
+export const sendotproute = async(req,res)=>{
+    const {email}= req.body;
+    try {
+        const customers = await shopify.customer.search({ query: `email:${email}` });
+        if (customers.length === 0) {
+            return res.json({
+                status: false,
+                message: "User not found !",
+            });
+        }
+
+        const otp = Math.floor(100000 + Math.random() * 900000); 
+
+        sendOtpEmail(email,otp)
+
+        return(
+            res.json({
+                success : true,
+                otp:otp,
+                message:"otp send"
+            })
+        )
+
+
+    } catch (error) {
+        return(
+            res.json({
+                success : false,
+                message:error
+            })
+        )
+
     }
 }
