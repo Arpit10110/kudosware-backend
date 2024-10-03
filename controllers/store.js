@@ -1,6 +1,4 @@
 import { shopify } from "../app.js";
-import { UserModel } from "../model/UserModel.js";
-
 export const getcollections = async (req, res) => {
     console.log("getcollections");
     try {

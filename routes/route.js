@@ -12,7 +12,7 @@ router.get("/port",(req,res)=>{
         res.send(`Port is ${process.env.PORT}`)
     )
 })
-
+ 
 
 // users routes
 router.post("/signup",SignUP);
