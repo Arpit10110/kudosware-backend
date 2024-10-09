@@ -174,3 +174,47 @@ export const sendotproute = async(req,res)=>{
 
     }
 }
+
+
+export const addnewaddress = async (req, res) => {
+    const { customerId, address } = req.body; // Destructure customerId and address from request body
+
+    try {
+        // Validate input
+        if (!customerId || !address) {
+            return res.status(400).json({
+                success: false,
+                message: "Customer ID and address are required.",
+            });
+        }
+
+        // Add address to Shopify customer
+        const customer = await shopify.customer.get(customerId);
+        
+        if (!customer) {
+            return res.status(404).json({
+                success: false,
+                message: "Customer not found.",
+            });
+        }
+
+        // Add the new address
+        const updatedCustomer = await shopify.customer.update(customerId, {
+            addresses: [...customer.addresses, address], // Add the new address to existing addresses
+        });
+
+        return res.json({
+            success: true,
+            message: "Address added successfully.",
+            data: updatedCustomer,
+        });
+    } catch (error) {
+        console.error("Error adding address:", error);
+
+        return res.status(500).json({
+            success: false,
+            message: "Error adding address.",
+            error: error.response ? error.response.body : error.message,
+        });
+    }
+};

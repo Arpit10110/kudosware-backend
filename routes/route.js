@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import {SignUP,login,sendotproute, Fpassword,profile} from "../controllers/user.js"
+import {SignUP,login,sendotproute, Fpassword,profile,addnewaddress} from "../controllers/user.js"
 import {getcollections,getAll,getBoys,getGirls,getAccessories,getToys} from "../controllers/store.js"
 router.get("/",(req,res)=>{
     return(
@@ -28,7 +28,7 @@ router.get("/getboys",getBoys);
 router.get("/getgirls",getGirls);
 router.get("/getaccessories",getAccessories);
 router.get("/gettoys",getToys);
-
+router.post("/addnewaddress",addnewaddress)
 
 
 
