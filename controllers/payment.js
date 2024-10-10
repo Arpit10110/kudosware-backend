@@ -1,5 +1,9 @@
-import { instance } from "../app.js";
 import crypto from "crypto";
+import Razorpay from "razorpay"
+const instance = new Razorpay({
+  key_id: "rzp_test_zX8JwR7ErLD2Nw",
+  key_secret: "A2BaCHr0mNaEgj9XCTwMwh9J",
+});
 export const checkout = async (req, res) => {
   const options = {
     amount: Number(req.body.amount * 100), // amount in the smallest currency unit
