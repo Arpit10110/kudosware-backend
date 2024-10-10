@@ -23,10 +23,10 @@ export const paymentverification = async (req, res) => {
         const isPayment = razorpay_signature == generated_signature
         if (isPayment)
         {
-          res.redirect(`${process.env.Frontend_url}/#success?refrence=${razorpay_payment_id}`);
+          res.redirect(`https://kudosware-testing.vercel.app/#success?refrence=${razorpay_payment_id}`);
         }
         else{
-          res.redirect(`${process.env.Frontend_url}/#fail?refrence=${razorpay_payment_id}`);
+          res.redirect(`https://kudosware-testing.vercel.app/#fail?refrence=${razorpay_payment_id}`);
         }
     } catch (error) {
         console.error(error);
