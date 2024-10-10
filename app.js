@@ -7,13 +7,14 @@ const app = express();
 config({
     path:"./config.env"
 })
-const corsOptions = {
-    origin: process.env.Frontend_url, // Add your frontend domain here
-    methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods if necessary
-    credentials: true, // If you're using cookies or credentials like tokens
-};
+// const corsOptions = {
+//     origin: process.env.Frontend_url, // Add your frontend domain here
+//     methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods if necessary
+//     credentials: true, // If you're using cookies or credentials like tokens
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 export const  shopify = new Shopify({
     shopName: process.env.ShopName ,
     apiKey: process.env.ApiKey,
