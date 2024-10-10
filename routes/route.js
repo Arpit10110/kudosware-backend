@@ -3,7 +3,7 @@ const router = express.Router();
 import {SignUP,login,sendotproute, Fpassword,profile,addnewaddress} from "../controllers/user.js"
 import {getcollections,getAll,getBoys,getGirls,getAccessories,getToys} from "../controllers/store.js"
 import {createorder,fetchAllOrders} from "../controllers/order.js"
-// import {checkout,paymentverification} from "../controllers/payment.js"
+import {checkout,paymentverification} from "../controllers/payment.js"
 router.get("/",(req,res)=>{
     return(
         res.send("Welcome to the backend of Kudosware!")
@@ -32,13 +32,13 @@ router.get("/getaccessories",getAccessories);
 router.get("/gettoys",getToys);
 router.post("/addnewaddress",addnewaddress)
 
-//Payments routes
-// router.post("/checkout",checkout);
-// router.post("/paymentverification",paymentverification);
+// Payments routes
+router.post("/checkout",checkout);
+router.post("/paymentverification",paymentverification);
 
-//orders routes
-// router.post("/createorder",createorder);
-// router.get("/fetchAllOrders",fetchAllOrders);
+// orders routes
+router.post("/createorder",createorder);
+router.get("/fetchAllOrders",fetchAllOrders);
 
 
 
