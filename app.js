@@ -12,7 +12,13 @@ export const  shopify = new Shopify({
     apiKey: process.env.ApiKey,
     password: process.env.Password
 });
-app.use(cors());
+const corsOptions = {
+    origin: process.env.Frontend_url, // Add your frontend domain here
+    methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods if necessary
+    credentials: true, // If you're using cookies or credentials like tokens
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(router);
