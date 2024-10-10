@@ -7,11 +7,6 @@ const app = express();
 config({
     path:"./config.env"
 })
-export const  shopify = new Shopify({
-    shopName: process.env.ShopName ,
-    apiKey: process.env.ApiKey,
-    password: process.env.Password
-});
 const corsOptions = {
     origin: process.env.Frontend_url, // Add your frontend domain here
     methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods if necessary
@@ -19,6 +14,12 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+export const  shopify = new Shopify({
+    shopName: process.env.ShopName ,
+    apiKey: process.env.ApiKey,
+    password: process.env.Password
+});
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(router);
